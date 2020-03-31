@@ -1,0 +1,122 @@
+[3J[H[2JListing all the shell script content
+FILE- arrays.sh
+commandlinevarread.sh
+exitstatus.sh
+fileexistchecker.sh
+forloop.sh
+hellouser.sh
+ifelse.sh
+ifstatement.sh
+null.sh
+read.sh
+setvariable.sh
+substitution.sh Content - #!/bin/bash
+#simple array list and loop to display
+SERVERS=("CLOUD1" "CLOUD SERVER 2" "CLOUD SERVER 3")
+COUNT=0
+
+for INDEX  in ${SERVERS[@]}; do
+       echo "Processing server: ${SERVERS[COUNT]}"
+       COUNT="`expr $COUNT + 1`"
+done
+#!/bin/bash
+#demo of command line values passed in our shell script
+
+echo "Reading from  commandline"
+echo "Filename is: $1"
+#!/bin/bash
+#exit status
+echo "Below will show exit status"
+echo "Exit status of echo above is: $?"
+#!/bin/bash
+echo "checking if file exist: a.txt"
+FILE=$1
+if [ -a $FILE ] 
+then
+    echo "$FILE exist"
+fi
+#!/bin/bash
+# this is example for for loop
+clear
+echo "Listing all the shell script content"
+
+SHELLSCRIPT=`ls *.sh`
+#echo $SHELLSCRIPT
+for SCRIPT in "$SHELLSCRIPT"; do
+   DISPLAY="`cat $SCRIPT`"
+   echo "FILE- $SCRIPT Content - $DISPLAY"
+done
+#!/bin/bash
+clear
+echo "This script will give user environment information"
+echo "================================================="
+echo ""
+echo "Hello username: $USER"
+echo ""
+echo "Your home directory is: $HOME"
+echo ""
+echo "Your terminal session type is: $TERM"
+echo ""
+
+#!/bin/bash
+#simple if else script
+
+echo "Enter a number between 1 and 3"
+read VALUE
+
+if [ "$VALUE" -eq "1" ] 2>/dev/null || [ "$VALUE" -eq "2" ] 2>/dev/null;then
+   echo "You entered $VALUE"
+elif [ "$VALUE" -eq "3" ] 2>/dev/null;then
+  echo "Entered 3"
+else
+   echo "No instruction followed"
+fi
+#!/bin/bash
+echo "Enter number"
+read NUM
+if [ $NUM -eq 3 ] 
+then
+    echo "Correct"
+fi
+#!/bin/bash
+#redirect to /dev/null
+
+echo "Displaying on console"
+echo "redirect to dev null will not show" >> /dev/null
+#!/bin/bash
+
+#read user input
+
+echo "Enter your name"
+read FIRSTNAME
+echo "Enter your lastname"
+read LASTNAME
+
+echo ""
+echo "Your full name is: $FIRSTNAME $LASTNAME"
+echo ""
+echo "Enter your age"
+read AGE
+echo "You will be  `expr $AGE + 10` years after 10 years"
+
+#!/bin/bash
+MYUSERNAME="tekraj"
+MYPASSWORD="123456"
+STARTOFSCRIPT=`date`
+echo "My login name for application is: $MYUSERNAME"
+echo "My login password for this application is: $MYPASSWORD"
+echo "Start Date: $STARTOFSCRIPT"
+
+ENDOFSCRIPT=`date`
+
+echo "End Date: $ENDOFSCRIPT"
+#!/bin/bash
+
+shopt -s expand_aliases
+alias TODAY="date"
+alias USERFILES = "find /home -user root"
+
+A=`TODAY`
+B=`USERFILES`
+echo $A
+echo $B
